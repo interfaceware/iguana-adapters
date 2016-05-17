@@ -27,6 +27,10 @@ local ShowUsers        = require 'ShowUsers'
 --config.save{config='salesforce_username', password='', key=StoreKey}
 --config.save{config='salesforce_password', password='', key=StoreKey}
 
+-- See https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_list.htm
+-- for a list of potential salesforce.com objects to put here.  Each company tends to choose very specific
+-- parts of salesforce.com to implement so it makes sense to select just the objects that your implementation
+-- uses.
 local SalesObjects= "user,account,contact,opportunity,note,opportunityLineItem,pricebookEntry,queueSobject"
 
 function main(Data)

@@ -10,8 +10,8 @@
    <from_http
       type="mapper"
       guid="Salesforcecom_Adapter-FromHTTP-TtK4KcYVwCIPiu"
-      commit_id="8a4a27987ba1f31fb7983d06bfd771cf23557609"
-      commit_comment="Added extra couple of lines."
+      commit_id="168b995838d13e2d9ee4c5ffc523369ab38740b2"
+      commit_comment="Added comment about the objects customization."
       mapper_url_path="salesforce/"/>
    <message_filter
       filter_after_logging="false"

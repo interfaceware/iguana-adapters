@@ -10,8 +10,8 @@
    <from_http
       type="mapper"
       guid="Salesforcecom_Adapter-FromHTTP-TtK4KcYVwCIPiu"
-      commit_id="a6dd17ff92a04237902351a902da1d62114481bd"
-      commit_comment="More comments in the examples."
+      commit_id="f4206ce5a0d8f6f10331eeac4cb7c6f62934ac85"
+      commit_comment="Import Translators: Julian&apos;s Version of salesforce adapter."
       mapper_url_path="salesforce/"/>
    <message_filter
       filter_after_logging="false"

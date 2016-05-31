@@ -1,3 +1,10 @@
+-- This module is an example of an adapter to connect to salesforce.
+
+-- http://help.interfaceware.com/v6/salesforce-com-adapter
+
+-- Please consult the above URL for information on getting
+-- the credentials required to authenticate this adapter.
+
 local store2 = require 'store2'
 
 local DbSchema = require 'dbs.api'
@@ -409,22 +416,34 @@ end
 
 local helpinfo = {}
 
-local HelpConnect = [[{"SeeAlso":[{"Title":"Salesforce","Link":"http://www.salesforce.com"}],
-                "Returns":[{"Desc":"The salesforce.com website."}],
-                "Title":"salesforce.connect",
-         "Parameters":[{"username":{"Desc":"User ID to login with."}},
-                       {"password":{"Desc":"Password of that user ID"}},
-                       {"consumer_key":{"Desc":"Consumer key for this connected app."}},
-                       {"consumer_secret":{"Desc":"Consumer secret for this connected app."}},
-                       {"clear_cache":{"Opt" : true,"Desc":"If this is set to true then then the SQLite cache used to improve performace will be cleared."}},
-                       {"objects": {"Opt" : true, "Desc" : "Optional list of objects to expose in the adapter."} }],
+local HelpConnect = [[{"SeeAlso":[{"Title":"Salesforce.com Adapter","Link":"http://help.interfaceware.com/v6/salesforce-com-adapter"},
+                                  {"Title":"The Salesforce website","Link":"http://www.salesforce.com"}],
+                "Returns":[{"Desc":"The salesforce.com website <u>string</u>."}],
+                "Title":"SalesforceConnect",
+         "Parameters":[{"username":{"Desc":"User ID to login with <u>string</u>."}},
+                       {"password":{"Desc":"Password of that user ID  <u>string</u>."}},
+                       {"consumer_key":{"Desc":"Consumer key for this connected app  <u>string</u>."}},
+                       {"consumer_secret":{"Desc":"Consumer secret for this connected app  <u>string</u>."}},
+                       {"clear_cache":{"Opt" : true,"Desc":"If this is set to true then then the SQLite cache used to improve performace will be cleared  <u>boolean</u>."}},
+                       {"objects": {"Opt" : true, "Desc" : "Optional list of objects to expose in the adapter <u>table</u>."} }],
          "ParameterTable": true,
-         "Usage":" local C = salesforce.connect{clear_cache=false,
-                      username='sales@interfaceware.com', 
-                      password='mypassword', 
-                      consumer_secret='585519048400883388', 
-                      consumer_key='3MVG9KI2HHAq33RyfdfRmZyEybpy7b_bZtwCyJW7e._mxrVtsrbM.g5n3.fIwK3vPGRl2Ly2u7joju3yYpPeO' }",
-         "Desc":"Returns a connection object to salesforce instance"}]]
+         "Examples":["-- Connect using hard coded parameters - not recommended
+local C = SalesforceConnect{clear_cache=false,
+   username='sales@interfaceware.com', 
+   password='mypassword', 
+   consumer_secret='585519048400883388', 
+   consumer_key='3MVG9KI2HHAq33RyfdfRmZyEybpy7b_bZtwCyJW7e._mxrVtsrbM.g5n3.fIwK3vPGRl2Ly2u7joju3yYpPeO' }",
+"-- Connect using stored ecrypted parameters - recommended
+   local ConsumerKey    = config.load{config='salesforce_consumer_key'   , key=StoreKey}
+   local Password       = config.load{config='salesforce_password'       , key=StoreKey}
+   local ConsumerSecret = config.load{config='salesforce_consumer_secret', key=StoreKey}
+   local UserName       = config.load{config='salesforce_username'       , key=StoreKey}
+      
+   local C = SalesforceConnect{username=UserName, objects=SalesObjects,
+      password=Password, consumer_key=ConsumerKey,  consumer_secret=ConsumerSecret}"],
+         "Usage":"SalesforceConnect{username=&lt;value&gt;, password=&lt;value&gt;, consumer_key=&lt;value&gt;,
+                  consumer_secret=&lt;value&gt; [, clear_cache=&lt;value&gt;] [, objects=&lt;value&gt;]}",
+         "Desc":"Returns a connection object to a specified salesforce instance"}]]
 
 help.set{input_function=SalesforceConnect, help_data=json.parse{data=HelpConnect}}
 

@@ -8,10 +8,11 @@
         "encrypt.password",
         "net.http.cache",
         "salesforce",
-        "store2"
+        "store2",
+        "tool.global.find"
     ],
     "OtherDependencies": [],
-    "timestamp": "1463518114",
+    "timestamp": "1464711315",
     "version_info": {
         "build": 0,
         "major": 6,
